@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/main/resources/css/cadastro.css">
+    <script src="/src/main/resources/js/cadastro.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="container">
+        <!-- Cabeçalho do Card -->
+        <div class="card-header">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+            </div>
+            <h2>PresençaSync</h2>
+            <p>Gerencie sua frequência de forma simples</p>
+        </div>
+
+        <!-- Abas de Navegação -->
+        <div class="tabs">
+            <button class="tab-btn active" id="login-tab" type="button" onclick="switchTab('login')">Entrar</button>
+            <button class="tab-btn" id="register-tab" type="button" onclick="switchTab('register')">Cadastrar</button>
+        </div>
+
+        <!-- Formulário de Login -->
+        <form id="login-form" class="form-content active" onsubmit="fazerLogin(event)">
+            <div class="input-group">
+                <label for="login-email">E-mail</label>
+                <input type="email" id="login-email" placeholder="seu@email.com" required>
+            </div>
+
+            <div class="input-group">
+                <label for="login-password">Senha</label>
+                <input type="password" id="login-password" placeholder="••••••••" required>
+            </div>
+
+            <div class="form-actions">
+                <a href="#" class="forgot-password">Esqueceu a senha?</a>
+            </div>
+
+            <button class="submit-btn" id="logar">Acessar Conta</button>
+        </form>
+
+        <!-- Formulário de Cadastro -->
+        <form id="register-form" class="form-content">
+            <div class="input-group">
+                <label for="register-name">Nome</label>
+                <input type="text" id="register-name" placeholder="Seu nome completo" required>
+        
+                <label for="register-email">E-mail</label>
+                <input type="email" id="register-email" placeholder="seu@email.com" required>
+            </div>
+        
+            <div class="input-group">
+                <label for="register-password">Senha</label>
+                <input type="password" id="register-password" placeholder="••••••••" required>
+            </div>
+        
+            <div class="input-group">
+                <label for="confirm-password">Confirmar Senha</label>
+                <input type="password" id="confirm-password" placeholder="••••••••" required>
+            </div>
+        
+            <button type="submit" class="submit-btn">Criar Conta</button>
+        </form>
+    </div>
+
+</body>
+</html>
