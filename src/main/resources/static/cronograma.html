@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<title>PELAFEU · Cronograma de Eventos</title>
+<link rel="stylesheet" href="/css/cronograma.css">
+<script src="/js/cronograma.js"></script>
+</head>
+<body>
+
+    <script>
+        // Executa antes de carregar o restante da página
+        const token = localStorage.getItem("token");
+        if (!token) {
+            alert("Acesso negado. Por favor, faça login.");
+            window.location.href = "cadastro.html"; // ou cadastro.html
+        }
+    </script>
+
+
+<header>
+    <div class="header-inner">
+      <div class="brand">
+          <div class="brand-mark">PF</div>
+          <div class="brand-text">
+          <strong>PELAFEU</strong>
+          <span>Unisul · Presença</span>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="index.html">Início</a>
+        <a href="#" class="active">Cronograma</a>
+        <a href="#">Turmas</a>
+        <a href="#">Contato</a>
+    </nav>
+    <a href="index.html" class="btn">Voltar ao início</a>
+</div>
+<div class="lanes"></div>
+</header>
+
+<section class="page-head">
+    <div class="container">
+        <span class="eyebrow">Cronograma · Setembro 2026</span>
+        <h1>Confirme sua presença nos próximos eventos</h1>
+        <p>Navegue pelo calendário, clique em um dia com evento para ver os detalhes e confirme sua participação na lista abaixo.</p>
+    </div>
+</section>
+
+
+<div class="container">
+    
+    <div class="calendar-wrap">
+
+        <!--Fica escondido-->
+        <dialog  id="card-criar-agendamento">
+            
+            <form id="form-agendamento">
+
+                <h1>Criar novo Agendamento</h1>
+                <span>Data: <strong id="data-selecionada" name="data">--/--/----</strong></span>
+               <label for="nome">Nome da atividade:</label> <input type="text" name="nome">
+               <label for="descricao">Descrição da atividade:</label> <input type="text" name="descricao">
+               <label for="time">Hora de Início:</label> <input type="time" name="horaInicio">
+               <label for="time">Hora de Término:</label> <input type="time" name="horaFim">
+               
+               <div id="modal-acoes">
+                   <button class="btn" id="fechar-modal" type="button">Cancelar</button>
+                   <button class="btn" id="salvarAgendamento" type="button">Salvar</button>
+               </div>
+            </form>
+        
+        </dialog>
+
+        <button class="btn" id="mostrar-card-criar-agendamento" onclick="abrirModal()">Criar Agendamento</button>
+
+      <div id="calendar"></div>
+    </div>
+  </div>
+ 
+  <section class="events-section">
+    <div class="container">
+      <h2 class="section-title" id="listTitle">Eventos deste mês</h2>
+      <div class="event-list" id="eventList">
+        <!-- gerado dinamicamente pelo script.js -->
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 PELAFEU · Unisul. Cronograma sujeito a alterações.
+  </footer>
+
+
+   <!-- Biblioteca de calendário (FullCalendar) -->
+   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/locales/pt-br.global.min.js"></script>
+</body>
+</html>

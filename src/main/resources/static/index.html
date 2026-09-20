@@ -7,14 +7,27 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/src/main/resources/css/index.css">
+<link rel="stylesheet" href="/css/index.css">
+<script src="/js/index.js"></script>
 </head>
 <body>
+  <script>
+      // Executa antes de carregar o restante da página
+      const token = localStorage.getItem("token");
+      if (!token) {
+          alert("Acesso negado. Por favor, faça login.");
+          window.location.href = "cadastro.html"; // ou cadastro.html
+      }
+  </script>
 
   <header>
     <div class="header-inner">
       <div class="brand">
-        <div class="brand-mark">PF</div>
+        <div class="brand-mark">
+          <a href="index.html" class="logo-link">
+            <img src="/imgs/logo pelo google.jpeg" alt="Logo da Empresa" class="logo-img">
+          </a>
+        </div>
         <div class="brand-text">
           <strong>PELAFEU</strong>
           <span>Unisul · Presença</span>
@@ -22,73 +35,25 @@
       </div>
       <nav class="nav">
         <a href="#inicio">Início</a>
-        <a href="#recursos">Recursos</a>
+        <a href="/cronograma.html">Confirmar</a>
         <a href="#como-funciona">Como funciona</a>
         <a href="#contato">Contato</a>
       </nav>
-      <a href="#" class="btn btn-outline">Entrar</a>
+      <a href="#" class="btn btn-outline">Logout</a>
     </div>
     <div class="lanes"></div>
   </header>
 
-  <section class="hero" id="inicio">
+    <section class="hero" id="inicio">
         <div class="container hero-inner">
-        <div>
-            <span class="eyebrow">Fisioterapia · Unisul</span>
-            <h1>Presença registrada em segundos, <em>sem correria</em>.</h1>
-            <p class="lead">O PELAFEU reúne turmas, horários e chamadas em um só lugar.</p>
-            <!--Marcação da data do evento á confirmar-->
-            
-            <div class="hero-actions">
-                <span class="pill pill-ok">Evento de hoje: </span> 
-                <span class="pill pill-ok">Segunda-feira</span> 
-            <a href="#" class="btn btn-primary">Registrar presença</a>
-            <a href="#recursos" class="btn btn-ghost">Ver como funciona</a>
-            </div>
+          <div>
+              <span class="eyebrow">Fisioterapia · Unisul</span>
+              <h1>Presença registrada em segundos, <em>sem correria</em>.</h1>
+              <p class="lead">O PELAFEU reúne turmas, horários e chamadas em um só lugar.</p>
+          </div>
         </div>
-
-        <div id="hero-card-eventos">
-
-            <div class="hero-card">
-                <h3>Eventos fixos</h3>
-                    <div class="mini-row">
-                        <span>Segunda-feira</span>
-                        <span class="pill pill-ok">12:00 - 21:00</span>
-                </div>
-                <div class="mini-row">
-                        <span>Terça-feira</span>
-                        <span class="pill pill-ok">12:00 - 21:00</span>
-                </div>
-                <div class="mini-row">
-                        <span>Quarta-feira</span>
-                        <span class="pill pill-ok">12:00 - 21:00</span>
-                </div>
-                <div class="mini-row">
-                        <span>Quinta-feira</span>
-                        <span class="pill pill-ok">12:00 - 21:00</span>
-                </div>
-                <div class="mini-row">
-                        <span>Sexta-feira</span>
-                        <span class="pill pill-ok">12:00 - 21:00</span>
-                </div>
-            </div>
-        
-            <!--Espelho dos eventos extras criados-->
-            <div class="hero-card" id="novos-eventos">
-                <h3>Próximos eventos - Turma de Fisioterapia</h3>
-                
-            </div>
-        </div>
-
-    </div>
-  </section>
-
-  <section class="stats">
-    <div class="container stats-inner">
-      
-    </div>
-  </section>
-
+    </section>
+  
   <section class="section" id="recursos">
     <div class="container">
       <div class="section-head">
@@ -182,7 +147,8 @@
       </div>
       <div class="footer-bottom">
         <span>© 2026 PELAFEU · Unisul. Todos os direitos reservados.</span>
-        <span>Feito para professores e alunos de Educação Física.</span>
+        <span>Desenvolvedor · Iann Andrade</span>
+        <span>Feito para professores e alunos de Fisioterapia.</span>
       </div>
     </div>
   </footer>
