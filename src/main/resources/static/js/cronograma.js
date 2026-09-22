@@ -8,6 +8,9 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+//contstante endereço do site
+const API_BASE_URL = "https://pelafeu.onrender.com";
+
 //Salva o valor da data
 let dataSelecionada = null;
 
@@ -43,7 +46,7 @@ let dataSelecionada = null;
 /*function buscarAgendamentos(dataSelecionada){
 
         try{
-            const response = await fetch(`/agendamento/buscar?data=${dataSelecionada}`,{
+            const response = await fetch(`${API_BASE_URL}/agendamento/buscar?data=${dataSelecionada}`,{
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -115,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             try {
-                const response = await fetch("http://localhost:8080/agendamento/criar", {
+                const response = await fetch(`${API_BASE_URL}/agendamento/criar`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -156,7 +159,7 @@ async function buscarAgendamentos(){
 
    // O try encapsula a execução assíncrona que pode falhar
    try {
-    const response = await fetch(`http://localhost:8080/agendamento?data=${dataSelecionada}`, {
+    const response = await fetch(`${API_BASE_URL}/agendamento?data=${dataSelecionada}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -282,7 +285,7 @@ document.addEventListener("click", async function(event) {
             console.log("ID do agendamento:", agendamentoId);
         
 
-            const response = await fetch(`http://localhost:8080/presenca/${agendamentoId}/confirmar`, {
+            const response = await fetch(`${API_BASE_URL}/presenca/${agendamentoId}/confirmar`, {
                 method: "POST",
                 headers: {
                     "Authorization": "Bearer " + token
@@ -312,7 +315,7 @@ document.addEventListener("click", async function renderizarListaPresenca(event)
         
         const agendamentoId = event.target.dataset.id;
 
-        const response = await fetch(`http://localhost:8080/presenca/${agendamentoId}/confirmados`,{
+        const response = await fetch(`${API_BASE_URL}/presenca/${agendamentoId}/confirmados`,{
             method: "POST",
             headers: {
                 "Authorization": "Bearer " + token

@@ -1,3 +1,6 @@
+//contstante endereço do site
+const API_BASE_URL = "https://pelafeu.onrender.com";
+
 // Function para alterar entre o cadastro e o login
 function switchTab(tab) {
     const loginForm = document.getElementById('login-form');
@@ -79,7 +82,7 @@ async function cadastrar(event) {
         return;
     }
 
-    const response = await fetch("http://localhost:8080/usuarios/cadastrar", {
+    const response = await fetch(`${API_BASE_URL}/usuarios/cadastrar`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -115,7 +118,7 @@ async function login(event) {
 
     try{
 
-        const response = await fetch("http://localhost:8080/usuarios/login", {
+        const response = await fetch(`${API_BASE_URL}/usuarios/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -125,7 +128,7 @@ async function login(event) {
                 senha: senha
             })
         });
-        
+
         if(!response.ok){
             if (response.status === 401) {
                 alert("E-mail ou senha incorretos!");
