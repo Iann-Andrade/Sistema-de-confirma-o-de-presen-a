@@ -39,7 +39,7 @@ public class SecurityConfig {
                 .requestMatchers("/usuarios/cadastrar", "/usuarios/login", "/favicon.ico").permitAll()
                 
                 // 2. Libera os arquivos visuais e recursos estáticos (HTML, CSS, JS)
-                .requestMatchers("/", "/index.html", "/cronograma.html", "/cadastro.html", "/login.html").permitAll()
+                .requestMatchers("/", "/index.html", "/cronograma.html", "/cadastro.html", "/login.html", "/imgs/**").permitAll()
                 .requestMatchers("/css/**", "/js/**", "/images/**", "/favicon.ico").permitAll()
                 
                 // 3. QUALQUER ROTA DE DADOS / API exige o Token JWT

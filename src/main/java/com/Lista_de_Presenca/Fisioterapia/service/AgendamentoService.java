@@ -35,27 +35,26 @@ public class AgendamentoService {
         }
     
     
-        /*  Roda toda SEXTA-FEIRA (FRI) à 00:00
-        @Scheduled(cron = "0 0 0 * * FRI")
-        public void GerarAgendamentoAutomatico(){
-            LocalDate hoje = LocalDate.now(); //Sexta-feira atual
-    
-            LocalDate proximaSegunda = hoje.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
-    
-            for(int i = 0; i<5; i++){
-                LocalDate diaAgendamento = proximaSegunda.plusDays(i);
-    
-                Agendamento agendamento = new Agendamento();
-                agendamento.setData(diaAgendamento);
-                agendamento.setHoraInicio(LocalTime.of(diaAgendamento, LocalTime.of(19, 0)));
-                agendamento.setHoraFim(LocalTime.of(diaAgendamento, LocalTime.of(21,0)));
-                agendamento.setNome("Atendimento");
-                agendamento.setDescricao("Gerado na sexta-feira anterior");
-    
-                agendamentoRepository.save(agendamento);
-            }
-    
-        };*/
+        //Roda toda Terça
+        @Scheduled(cron = "0 0 0 * * TUE")
+        public void GerarAgendamentoAutomatico() {
+
+            LocalDate hoje = LocalDate.now();
+
+            LocalDate proximaTerca = hoje.with(
+                TemporalAdjusters.next(DayOfWeek.TUESDAY)
+            );
+
+            Agendamento agendamento = new Agendamento();
+
+            agendamento.setData(proximaTerca);
+            agendamento.setHoraInicio(LocalTime.of(19, 0));
+            agendamento.setHoraFim(LocalTime.of(21, 0));
+            agendamento.setNome("Atendimento de Fisioterapia Traumato-Ortopédica");
+            agendamento.setDescricao("Foco: Avaliação e tratamento de dores articulares (ombros, quadril e tornozelos).");
+
+            agendamentoRepository.save(agendamento);
+        }
     
         //Criar novo agendamento manualmente
         public Agendamento criarAgendamento(Agendamento agendamento){

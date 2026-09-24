@@ -8,8 +8,28 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+  
+    if (menuToggle && navMenu) {
+      menuToggle.addEventListener('click', function () {
+        navMenu.classList.toggle('active');
+      });
+  
+      // Fecha o menu ao clicar em qualquer link
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+        });
+      });
+    }
+  });
+
 //contstante endereço do site
-const API_BASE_URL = "https://pelafeu.onrender.com";
+const API_BASE_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    ? "http://localhost:8080"                   // URL da API local (Spring Boot)
+    : "https://seu-app-fisioterapia.onrender.com"; // URL da API no Render
 
 //Salva o valor da data
 let dataSelecionada = null;
@@ -18,14 +38,20 @@ let dataSelecionada = null;
  document.addEventListener('DOMContentLoaded', function() {
      const calendarEl = document.getElementById('calendar');
      const calendar = new FullCalendar.Calendar(calendarEl, {
-        locale: 'pt-br',
+        locale: 'PT-BR',
         initialView: 'dayGridMonth',
         height: 'auto',
         fixedWeekCount: false,
+        buttonText: {
+            today: 'Hoje',
+            month: 'Mês',
+            week: 'Semana',
+            day: 'Dia'
+          },
         headerToolbar: {
-          left: 'prev,next today',
+          left: 'prev, today',
           center: 'title',
-          right: '',
+          right: 'next',
         },
       
         // 1. Habilita a seleção de datas

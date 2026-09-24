@@ -1,5 +1,5 @@
 :root{
-    --navy: #1b3a5c;
+  --navy: #1b3a5c;
     --navy-dark: #0e2438;
     --navy-soft: #2d5680;
     --green: #4f7942;
@@ -8,242 +8,448 @@
     --mist: #eef3f0;
     --ink: #17222c;
     --ink-soft: #56677a;
-    --line: #e3e9e6;
     --lane-w: 64px;
-  
-    /* categorias */
-    --cat-corrida: #4f7942;
-    --cat-volei: #2d5680;
-    --cat-ciclismo: #0e2438;
-    --cat-ginastica: #7fa86f;
-    --cat-institucional: #8a7a4f;
-  }
-  
-  *{ box-sizing: border-box; margin: 0; padding: 0; }
-  
-  body{
-    font-family: 'Work Sans', sans-serif;
-    color: var(--ink);
-    background: var(--mist);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-  
-  h1, h2, h3, .brand, .btn, .nav a{
-    font-family: 'Oswald', sans-serif;
-    letter-spacing: 0.02em;
-  }
-  
-  a{ color: inherit; text-decoration: none; }
-  
-  .container{
-    width: 100%;
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 0 32px;
-  }
-  
-  /* ---------- HEADER ---------- */
-  header{
+
+  /* categorias */
+  --cat-corrida: #4f7942;
+  --cat-volei: #2d5680;
+  --cat-ciclismo: #0e2438;
+  --cat-ginastica: #7fa86f;
+  --cat-institucional: #8a7a4f;
+}
+
+*{ box-sizing: border-box; margin: 0; padding: 0; }
+
+body{
+  font-family: 'Work Sans', sans-serif;
+  color: var(--ink);
+  background: var(--mist);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .brand, .btn, .nav a{
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+a{ color: inherit; text-decoration: none; }
+
+.container{
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ---------- HEADER ---------- */
+  /* =========================================================
+   ESTILOS GERAIS E DESKTOP DO CABEÇALHO
+   ========================================================= */
+   .main-header {
+    background-color: var(--white);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
     position: sticky;
     top: 0;
-    z-index: 50;
-    background: rgba(255,255,255,0.94);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--line);
+    z-index: 1000;
+    font-family: 'Work Sans', sans-serif;
   }
   
-  .header-inner{
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 14px 32px;
-    max-width: 1120px;
-    margin: 0 auto;
+    min-height: 70px; /* Garante altura fixa em todas as páginas */
   }
   
-  .brand{ display: flex; align-items: center; gap: 12px; }
+  /* Bloco da Marca */
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
   
-  .brand-mark{
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: conic-gradient(from 200deg, var(--navy) 0 55%, var(--green) 55% 100%);
-    display: grid;
-    place-items: center;
-    color: var(--white);
+  /* Logo */
+  .logo-img {
+    height: 48px;
+    width: auto;
+    max-width: 160px;
+    display: block; 
+    object-fit: contain;
+    border-radius: 6px;
+    transition: transform 0.2s ease;
+  }
+  
+  .logo-link:hover .logo-img {
+    transform: scale(1.03);
+  }
+  
+  /* Texto da Marca (Garante exibição do UNISUL PRESENÇA) */
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .brand-text strong {
+    color: var(--navy-dark);
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
     font-weight: 700;
-    font-size: 15px;
+    letter-spacing: 0.05em;
+    line-height: 1.1;
+    display: block;
   }
   
-  .brand-text{ display: flex; flex-direction: column; line-height: 1.1; }
-  .brand-text strong{ font-size: 19px; font-weight: 700; color: var(--navy-dark); }
-  .brand-text span{
+  .brand-text span {
+    color: var(--ink-soft);
     font-family: 'Work Sans', sans-serif;
     font-size: 11px;
-    color: var(--ink-soft);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    font-weight: 600;
+    display: block !important; /* Força o elemento a ser renderizado */
+    line-height: 1.2;
+    margin-top: 2px;
   }
   
-  .nav{ display: flex; align-items: center; gap: 32px; }
+  /* Links de Navegação */
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
   
-  .nav a{
+  .nav-link {
+    color: var(--navy-dark);
+    text-decoration: none;
     font-size: 14px;
-    font-weight: 500;
-    color: var(--ink-soft);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    padding: 6px 0;
-    position: relative;
-  }
-  
-  .nav a.active{ color: var(--navy); }
-  .nav a.active::after{
-    content: "";
-    position: absolute;
-    left: 0; bottom: -2px;
-    width: 100%; height: 2px;
-    background: var(--green);
-  }
-  
-  .btn{
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 11px 22px;
-    font-size: 13px;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
+    padding: 6px 12px;
     border-radius: 6px;
-    border: 2px solid var(--navy);
-    color: var(--navy);
-    background: transparent;
-    cursor: pointer;
-    transition: background .18s ease, color .18s ease;
+    transition: all 0.25s ease;
   }
-  .btn:hover{ background: var(--navy); color: var(--white); }
   
-  .btn-clear{
-    border-color: var(--green);
+  .nav-link:hover {
     color: var(--green);
-    background: var(--white);
-    margin-left: auto;
-  }
-  .btn-clear:hover{ background: var(--green); color: var(--white); }
-  
-  .lanes{
-    height: 8px;
-    width: 100%;
-    background: repeating-linear-gradient(
-      -35deg,
-      var(--green) 0 var(--lane-w),
-      var(--navy) var(--lane-w) calc(var(--lane-w) * 2)
-    );
+    background-color: rgba(79, 121, 66, 0.08);
   }
   
-  /* ---------- PAGE HEAD ---------- */
-  .page-head{ padding: 56px 0 28px; }
-  
-  .eyebrow{
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 12.5px;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--green);
-    margin-bottom: 14px;
-  }
-  .eyebrow::before{ content: ""; width: 26px; height: 2px; background: var(--green); }
-  
-  .page-head h1{
-    font-size: clamp(1.9rem, 3.4vw, 2.6rem);
-    color: var(--navy-dark);
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-  
-  .page-head p{
-    color: var(--ink-soft);
-    font-size: 15.5px;
-    max-width: 560px;
-  }
-  
-  /* ---------- LEGENDA ---------- */
-  .legend{
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 14px 20px;
-    margin: 28px 0 20px;
-  }
-  
-  .legend-item{
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  /* Botão Logout */
+  .btn-logout {
+    color: var(--white) !important;
+    background-color: var(--navy-dark);
+    border: 1px solid var(--navy-dark);
+    padding: 8px 18px;
+    border-radius: 8px;
+    text-decoration: none;
     font-size: 13px;
-    color: var(--ink-soft);
-    flex-shrink: 0;
-  }
-  
-  .legend-dot{
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-  
-  /* ---------- CALENDÁRIO (FullCalendar) ---------- */
-  .calendar-wrap{
-    background: var(--white);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 20px;
-    margin-bottom: 56px;
-    text-align: end;
-  }
-  
-  .fc{
-    font-family: 'Work Sans', sans-serif;
-    color: var(--ink);
-  }
-  
-  .fc .fc-toolbar-title{
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.25rem;
-    color: var(--navy-dark);
-    text-transform: capitalize;
-  }
-  
-  .fc .fc-button{
-    background: var(--white);
-    border: 1px solid var(--line);
-    color: var(--navy);
-    box-shadow: none;
-    text-transform: capitalize;
-    font-family: 'Work Sans', sans-serif;
     font-weight: 600;
-    padding: 6px 14px;
-  }
-  .fc .fc-button:hover{ background: var(--navy); color: var(--white); border-color: var(--navy); }
-  .fc .fc-button:focus{ box-shadow: 0 0 0 3px rgba(79,121,66,0.3); }
-  .fc .fc-button-primary:not(:disabled).fc-button-active,
-  .fc .fc-button-primary:not(:disabled):active{
-    background: var(--green);
-    border-color: var(--green);
-    color: var(--white);
+    transition: all 0.2s ease;
   }
   
-  .fc .fc-col-header-cell{
-    background: var(--navy-dark);
+  .btn-logout:hover {
+    background-color: var(--green);
+    border-color: var(--green);
+  }
+  
+  /* Ajustes Desktop */
+  @media (min-width: 769px) {
+    .logo-img {
+      height: 54px;
+      max-width: 200px;
+    }
+  }
+
+/* Botão Hambúrguer (Escondido por padrão no Desktop) */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26px;
+  height: 19px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.menu-toggle span {
+  width: 100%;
+  height: 3px;
+  background-color: var(--navy-dark, #0f2a4a);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Line decorativa opcional na base */
+.lanes {
+  height: 3px;
+  background: linear-gradient(90deg, var(--navy-dark, #0f2a4a) 0%, var(--green, #16a34a) 100%);
+}
+
+/*RESPONSIVO (MOBILE - DISPOSITIVOS ATÉ 768px)*/
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex; /* Exibe o botão hambúrguer */
+  }
+
+  /* Transforma o menu horizontal em um dropdown retangular */
+  .nav {
+    display: none; /* Escondido por padrão */
+    flex-direction: column;
+    align-items: stretch;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--white, #ffffff);
+    border-bottom: 2px solid var(--green, #16a34a);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    padding: 16px 24px;
+    gap: 12px;
+  }
+
+  /* Classe ativada via JavaScript ao clicar no hambúrguer */
+  .nav.active {
+    display: flex;
+  }
+
+  .nav-link {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line, #e2e8f0);
+    font-size: 15px;
+  }
+
+  .btn-logout {
+    text-align: center;
+    margin-top: 8px;
     padding: 10px 0;
   }
-  .fc .fc-col-header-cell-cushion{
-    color: rgba(255,255,255,0.9);
+}
+
+/* ---------- PAGE HEAD ---------- */
+.page-head{ padding: 56px 0 28px; }
+
+.eyebrow{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 14px;
+}
+.eyebrow::before{ content: ""; width: 26px; height: 2px; background: var(--green); }
+
+.page-head h1{
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  color: var(--navy-dark);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.page-head p{
+  color: var(--ink-soft);
+  font-size: 15.5px;
+  max-width: 560px;
+}
+
+/* ---------- LEGENDA ---------- */
+.legend{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px 20px;
+  margin: 28px 0 20px;
+}
+
+.legend-item{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  flex-shrink: 0;
+}
+
+.legend-dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ---------- CALENDÁRIO (FullCalendar - Toolbar Integrada) ---------- */
+.calendar-wrap{
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 56px;
+}
+
+.fc{
+  font-family: 'Work Sans', sans-serif;
+  color: var(--ink);
+}
+
+/* Toolbar principal */
+.fc .fc-toolbar.fc-header-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px !important;
+  gap: 12px;
+}
+
+.fc .fc-toolbar-chunk {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Título (Mês/Ano) Clean */
+.fc .fc-toolbar-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: black;
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  margin: 0;
+}
+
+/* Grupo de botões estilo Segmented Control (Pílula) */
+.fc .fc-button-group {
+  padding: 0px;
+  display: inline-flex;
+  gap: 0px;
+}
+
+/* Estilização individual dos botões */
+/*TOOLBAR EM FORMATO DE CARD */
+   .fc .fc-toolbar.fc-header-toolbar {
+    background-color: #4f79429c !important;
+    border: 1px solid rgb(161, 160, 160) !important;
+    border-radius: 12px !important;
+    padding: 12px 18px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.13) !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-bottom: 20px !important;
+  }
+  
+  /* Agrupamento do centro (Botão Hoje + Título) */
+  .fc .fc-toolbar-chunk:nth-child(2) {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+  }
+  
+  /* Título do Mês em Azul Escuro */
+  .fc .fc-toolbar-title {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    color: #0e2438 !important;
+    margin: 0 !important;
+  }
+  
+  /*ESTILO DOS BOTÕES DA TOOLBAR */
+  .fc .fc-button {
+    background: transparent;
+    border: none !important;
+    color: var(--navy-dark, #0f2a4a);
+    box-shadow: none !important;
+    text-transform: capitalize;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 7px !important;
+    transition: background 0.18s ease, color 0.18s ease;
+  }
+  
+  /* Botões Anterior (<) e Próximo (>) */
+  .fc .fc-prev-button,
+  .fc .fc-next-button {
+    background: #ffffff !important;
+    border: 1px solid var(--line, #e2e8f0) !important;
+    color: var(--navy-dark, #0f2a4a) !important;
+    border-radius: 8px !important;
+    padding: 6px 12px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  .fc .fc-prev-button:hover,
+  .fc .fc-next-button:hover {
+    background: rgba(15, 42, 74, 0.06) !important;
+    border-color: var(--navy-dark, #0f2a4a) !important;
+  }
+  
+  #mostrar-card-criar-agendamento{
+  color: var(--white, #ffffff) !important;
+  background-color: var(--navy-dark, #0f2a4a);
+  border: 1px solid var(--navy-dark, #0f2a4a);
+  padding: 8px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 400;
+  transition: all 0.2s ease;
+}
+
+#mostrar-card-criar-agendamento:hover {
+  background-color: var(--green, #16a34a);
+  border-color: var(--green, #16a34a);
+}
+
+  /* Botão "Hoje" em destaque */
+  .fc .fc-today-button {
+    background: #ffffff !important;
+    border: 1px solid var(--navy-dark, #0f2a4a) !important;
+    color: var(--navy-dark, #0f2a4a) !important;
+    border-radius: 8px !important;
+    padding: 6px 14px !important;
+    font-weight: 600 !important;
+  }
+  
+  .fc .fc-today-button:hover {
+    background: var(--navy-dark, #0f2a4a) !important;
+    color: #ffffff !important;
+  }
+  
+  .fc .fc-today-button:disabled {
+    opacity: 0.6;
+  }
+  
+  /* =========================================================
+     CABEÇALHO AZUL ESCURO ORIGINAL E GRADE
+     ========================================================= */
+  /* Cabeçalho das colunas com o Azul Escuro da marca */
+  .fc .fc-col-header-cell {
+    background: var(--navy-dark, #0f2a4a) !important;
+    padding: 10px 0 !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+  }
+  
+  .fc .fc--button {
+    display: none !important;
+  }
+
+  /* Texto dos dias da semana em Branco */
+  .fc .fc-col-header-cell-cushion {
+    color: #ffffff !important;
     font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
@@ -251,28 +457,34 @@
     text-decoration: none;
   }
   
-  .fc .fc-scrollgrid{
-    border-color: var(--line);
+  /* Moldura e borda geral da tabela */
+  .fc .fc-scrollgrid {
+    border: 1px solid var(--line, #e2e8f0) !important;
     border-radius: 12px;
     overflow: hidden;
   }
   
-  .fc .fc-daygrid-day-number{
-    color: var(--ink-soft);
-    font-family: 'Oswald', sans-serif;
+  /* Números dos dias */
+  .fc .fc-daygrid-day-number {
+    color: var(--navy-dark, #0f2a4a);
+    font-family: 'Work Sans', sans-serif;
     font-weight: 600;
     font-size: 13px;
-    padding: 6px;
+    padding: 6px 8px;
     text-decoration: none;
   }
   
-  .fc .fc-day-today{ background: rgba(79,121,66,0.08) !important; }
-  .fc .fc-day-today .fc-daygrid-day-number{
-    color: var(--white);
-    background: var(--green);
+  /* Destaque suave no dia "Hoje" na grade */
+  .fc .fc-day-today { 
+    background: rgba(15, 42, 74, 0.04) !important; 
+  }
+  
+  .fc .fc-day-today .fc-daygrid-day-number {
+    color: #ffffff;
+    background: var(--navy-dark, #0f2a4a);
     border-radius: 50%;
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -280,353 +492,801 @@
     margin: 4px;
   }
   
-  .fc-event{
+  /* Eventos */
+  .fc-event {
     border: none;
     border-radius: 5px;
     padding: 2px 6px;
     font-size: 11px;
     font-weight: 500;
     cursor: pointer;
-    color: var(--white);
-  }
-  
-  .fc-event.corrida{ background: var(--cat-corrida); }
-  .fc-event.volei{ background: var(--cat-volei); }
-  .fc-event.ciclismo{ background: var(--cat-ciclismo); }
-  .fc-event.ginastica{ background: var(--cat-ginastica); color: var(--ink); }
-  .fc-event.institucional{ background: var(--cat-institucional); }
-  
-  .fc-daygrid-day.dia-selecionado{
-    box-shadow: inset 0 0 0 2px var(--green);
-    background: rgba(79,121,66,0.06);
-  }
-  
-  /* ---------- LISTA DE EVENTOS ---------- */
-  .events-section{ padding-bottom: 96px; }
-  
-  .events-section .section-title{
-    font-size: 1.4rem;
-    color: var(--navy-dark);
-    font-weight: 700;
-    margin-bottom: 24px;
-  }
-  
-  .event-list{
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  
-  .empty-state{
-    color: var(--ink-soft);
-    font-size: 14px;
-    padding: 24px 0;
-  }
-  
-  .event-card{
-    display: grid;
-    grid-template-columns: 88px 1fr auto;
-    align-items: center;
-    gap: 20px;
-    background: var(--white);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 18px 22px;
-    transition: box-shadow .2s ease, transform .2s ease;
-  }
-  
-  .event-card:hover{
-    box-shadow: 0 14px 26px -18px rgba(27,58,92,0.35);
-    transform: translateY(-2px);
-  }
-  
-  .event-date{
-    text-align: center;
-    border-right: 1px solid var(--line);
-    padding-right: 16px;
-  }
-  
-  .event-date .num{
-    font-family: 'Oswald', sans-serif;
-    font-size: 26px;
-    font-weight: 700;
-    color: var(--navy);
-    line-height: 1;
-  }
-  
-  .event-date .mon{
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--ink-soft);
-    margin-top: 4px;
-  }
-  
-  .event-info h3{
-    font-size: 16.5px;
-    color: var(--navy-dark);
-    font-weight: 600;
-    margin-bottom: 6px;
-  }
-  
-  .event-meta{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 16px;
-    font-size: 13px;
-    color: var(--ink-soft);
-  }
-  
-  .tag{
-    display: inline-block;
-    font-size: 10.5px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 3px 9px;
-    border-radius: 20px;
-    color: var(--white);
-    margin-bottom: 8px;
-  }
-  .tag.corrida{ background: var(--cat-corrida); }
-  .tag.volei{ background: var(--cat-volei); }
-  .tag.ciclismo{ background: var(--cat-ciclismo); }
-  .tag.ginastica{ background: var(--cat-ginastica); color: var(--ink); }
-  .tag.institucional{ background: var(--cat-institucional); }
-  
-  
-  /* confirmar presença — toggle 100% CSS */
-  .confirm-input{
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-  }
-  
-  .confirm-btn{
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 11px 20px;
-    font-size: 13px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    border: 2px solid var(--green);
-    color: var(--green);
-    border-radius: 7px;
-    cursor: pointer;
-    background: var(--white);
-    transition: background .18s ease, color .18s ease;
-    white-space: nowrap;
-  }
-  .confirm-btn:hover{ background: rgba(79,121,66,0.08); }
-  .confirm-btn .txt-on{ display: none; }
-  
-  .confirm-input:checked + .confirm-btn{ background: var(--green); color: var(--white); }
-  .confirm-input:checked + .confirm-btn .txt-off{ display: none; }
-  .confirm-input:checked + .confirm-btn .txt-on{ display: inline; }
-  
-  .confirm-input:focus-visible + .confirm-btn{
-    outline: 3px solid rgba(79,121,66,0.4);
-    outline-offset: 2px;
-  }
-  
-  /* ---------- FOOTER ---------- */
-  footer{
-    background: var(--navy-dark);
-    color: #9fb0c0;
-    padding: 28px 0;
-    font-size: 13px;
-    text-align: center;
-  }
-
-  /*Estilização Modal Card-criar-agendamento*/
-  #card-criar-agendamento {
-    border: none;
-    border-radius: 12px;
-    padding: 24px;
-    width: 90%;
-    max-width: 440px;
-    background-color: #ffffff;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    margin: auto; /* Centraliza perfeitamente no meio da tela */
-    animation: fadeIn 0.2s ease-out;
-  }
-  
-  /* Fundo escurecido atrás do modal */
-  #card-criar-agendamento::backdrop {
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(3px);
-  }
-  
-  /* Animação suave de abertura */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  /* Estrutura do Formulário */
-  #card-criar-agendamento form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  #card-criar-agendamento{
-    text-align: start;
-  }
-  
-  /* Novo Título h1 */
-  #card-criar-agendamento h1 {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #222222;
-    margin: 0 0 4px 0;
-  }
-  
-  /* Exibição da Data */
-  #card-criar-agendamento span {
-    font-weight: 600;
-    color: #008080;
-    font-size: 0.95rem;
-    margin-bottom: 8px;
-  }
-  
-  /* Labels e Inputs */
-  #card-criar-agendamento label {
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: #444444;
-    margin-bottom: -6px;
-  }
-  
-  #card-criar-agendamento input {
-    padding: 10px 12px;
-    border: 1px solid #cccccc;
-    border-radius: 6px;
-    font-size: 1rem; /* 16px previne zoom no iOS */
-    outline: none;
-    box-sizing: border-box;
-    width: 100%;
-    transition: border-color 0.2s;
-  }
-  
-  #card-criar-agendamento input:focus {
-    border-color: #008080;
-    box-shadow: 0 0 0 2px rgba(0, 128, 128, 0.15);
-  }
-  
-  /* Área de Ações/Botões */
-  #card-criar-agendamento .modal-acoes {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 12px;
-  }
-  
-  #card-criar-agendamento button {
-    padding: 10px 18px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: background-color 0.2s;
-  }
-  
-  #card-criar-agendamento button[type="submit"] {
-    background-color: #008080;
     color: #ffffff;
   }
-  
-  #card-criar-agendamento button[type="submit"]:hover {
-    background-color: #006666;
+
+.fc-event.corrida{ background: var(--cat-corrida); }
+.fc-event.volei{ background: var(--cat-volei); }
+.fc-event.ciclismo{ background: var(--cat-ciclismo); }
+.fc-event.ginastica{ background: var(--cat-ginastica); color: var(--ink); }
+.fc-event.institucional{ background: var(--cat-institucional); }
+
+.fc-daygrid-day.dia-selecionado{
+  box-shadow: inset 0 0 0 2px var(--green);
+  background: rgba(79,121,66,0.06);
+}
+
+/* ---------- LISTA DE EVENTOS ---------- */
+.events-section{ padding-bottom: 96px; }
+
+.events-section .section-title{
+  font-size: 1.4rem;
+  color: var(--navy-dark);
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.event-list{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.empty-state{
+  color: var(--ink-soft);
+  font-size: 14px;
+  padding: 24px 0;
+}
+
+.event-card{
+  display: grid;
+  grid-template-columns: 88px 1fr auto;
+  align-items: center;
+  gap: 20px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 18px 22px;
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+
+.event-card:hover{
+  box-shadow: 0 14px 26px -18px rgba(27,58,92,0.35);
+  transform: translateY(-2px);
+}
+
+.event-date{
+  text-align: center;
+  border-right: 1px solid var(--line);
+  padding-right: 16px;
+}
+
+.event-date .num{
+  font-family: 'Oswald', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1;
+}
+
+.event-date .mon{
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+
+.event-info h3{
+  font-size: 16.5px;
+  color: var(--navy-dark);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.event-meta{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.tag{
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 9px;
+  border-radius: 20px;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.tag.corrida{ background: var(--cat-corrida); }
+.tag.volei{ background: var(--cat-volei); }
+.tag.ciclismo{ background: var(--cat-ciclismo); }
+.tag.ginastica{ background: var(--cat-ginastica); color: var(--ink); }
+.tag.institucional{ background: var(--cat-institucional); }
+
+
+/* confirmar presença — toggle 100% CSS */
+.confirm-input{
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.confirm-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 2px solid var(--green);
+  color: var(--green);
+  border-radius: 7px;
+  cursor: pointer;
+  background: var(--white);
+  transition: background .18s ease, color .18s ease;
+  white-space: nowrap;
+}
+.confirm-btn:hover{ background: rgba(79,121,66,0.08); }
+.confirm-btn .txt-on{ display: none; }
+
+.confirm-input:checked + .confirm-btn{ background: var(--green); color: var(--white); }
+.confirm-input:checked + .confirm-btn .txt-off{ display: none; }
+.confirm-input:checked + .confirm-btn .txt-on{ display: inline; }
+
+.confirm-input:focus-visible + .confirm-btn{
+  outline: 3px solid rgba(79,121,66,0.4);
+  outline-offset: 2px;
+}
+
+/* ---------- FOOTER ---------- */
+footer{
+  background: var(--navy-dark);
+  color: #9fb0c0;
+  padding: 28px 0;
+  font-size: 13px;
+  text-align: center;
+}
+
+/*Estilização Modal Card-criar-agendamento*/
+#card-criar-agendamento {
+  border: none;
+  border-radius: 12px;
+  padding: 24px;
+  width: 90%;
+  max-width: 440px;
+  background-color: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  margin: auto; /* Centraliza perfeitamente no meio da tela */
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Fundo escurecido atrás do modal */
+#card-criar-agendamento::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+}
+
+/* Animação suave de abertura */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  
-  #card-criar-agendamento button[type="button"] {
-    background-color: #e0e0e0;
-    color: #333333;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  #card-criar-agendamento button[type="button"]:hover {
-    background-color: #d0d0d0;
+}
+
+/* Estrutura do Formulário */
+#card-criar-agendamento form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#card-criar-agendamento{
+  text-align: start;
+}
+
+/* Novo Título h1 */
+#card-criar-agendamento h1 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #222222;
+  margin: 0 0 4px 0;
+}
+
+/* Exibição da Data */
+#card-criar-agendamento span {
+  font-weight: 600;
+  color: #008080;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+/* Labels e Inputs */
+#card-criar-agendamento label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #444444;
+  margin-bottom: -6px;
+}
+
+#card-criar-agendamento input {
+  padding: 10px 12px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  font-size: 1rem; /* 16px previne zoom no iOS */
+  outline: none;
+  box-sizing: border-box;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+
+#card-criar-agendamento input:focus {
+  border-color: #008080;
+  box-shadow: 0 0 0 2px rgba(0, 128, 128, 0.15);
+}
+
+/* Área de Ações/Botões */
+#card-criar-agendamento .modal-acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+#card-criar-agendamento button {
+  padding: 10px 18px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+#card-criar-agendamento button[type="submit"] {
+  background-color: #008080;
+  color: #ffffff;
+}
+
+#card-criar-agendamento button[type="submit"]:hover {
+  background-color: #006666;
+}
+
+#card-criar-agendamento button[type="button"] {
+  background-color: #e0e0e0;
+  color: #333333;
+}
+
+#card-criar-agendamento button[type="button"]:hover {
+  background-color: #d0d0d0;
+}
+
+/*Card de agendamentos existentes*/
+ /* Card principal de agendamento no estilo Pelafeu */
+ .agendamento {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 4px 12px rgba(14, 36, 56, 0.03);
+  transition: box-shadow .2s ease, transform .2s ease;
   }
 
-  /*Card de agendamentos existentes*/
-   /* Card principal de agendamento no estilo Pelafeu */
-   .agendamento {
-    background: var(--white);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 20px 24px;
+  .agendamento:hover {
+  box-shadow: 0 14px 26px -18px rgba(27, 58, 92, 0.35);
+  transform: translateY(-2px);
+  }
+
+  /* Layout em Grid do Topo (Mantendo o layout solicitado) */
+  .card-topo-agendamento {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  gap: 8px 16px;
+  }
+
+  /* 1. Informações do Agendamento (Esquerda / Ocupa 2 linhas) */
+  .ifo-agendamento {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  }
+
+  .ifo-agendamento h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.25rem;
+  color: var(--navy-dark);
+  font-weight: 700;
+  line-height: 1.2;
+  }
+
+  .ifo-agendamento h2 {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 14px;
+  color: var(--ink-soft);
+  font-weight: 400;
+  }
+
+  .ifo-agendamento p {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--green);
+  margin-top: 4px;
+  }
+
+  /* 2. Botões de Configuração (Direita / Topo) */
+  .config-agendamento {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  }
+
+  .config-agendamento button {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  border-radius: 6px;
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background .18s ease, color .18s ease, border-color .18s ease;
+  }
+
+  .config-agendamento button:hover {
+  background: var(--navy-soft);
+  color: var(--white);
+  border-color: var(--navy-soft);
+  }
+
+  .config-agendamento button.btn-excluir:hover {
+  background: #c93b2b;
+  color: var(--white);
+  border-color: #c93b2b;
+  }
+
+  .config-agendamento button .material-icons,
+  .config-agendamento button i {
+  font-size: 16px;
+  }
+
+  /* 3. Data (Abaixo de Configurações à Direita) */
+  .data-agendamento {
+  grid-column: 2;
+  grid-row: 2;
+  text-align: right;
+  }
+
+  .data-agendamento span {
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: 0.04em;
+  background: var(--mist);
+  padding: 4px 10px;
+  border-radius: 4px;
+  display: inline-block;
+  }
+
+
+  .container-confirmar{
+      display: grid;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-items: center;
+      gap: 10px;
+  }
+
+  #abrir-lista-confirmados{
+      padding: 2px;
+  }
+
+  .btn-confirmar{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 22px;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-radius: 6px;
+      border: 2px solid var(--navy);
+      color: var(--navy);
+      background: transparent;
+      cursor: pointer;
+      transition: background .18s ease, color .18s ease;
+  }
+
+
+  .fechar-lista {
+      background: transparent;
+      border: none;
+      font-size: 24px;
+      font-weight: bold;
+      color: #666;
+      cursor: pointer;
+      padding: 4px 8px;
+      line-height: 1;
+      border-radius: 4px;
+      transition: background-color 0.2s, color 0.2s;
+  }
+  
+  /* Efeito ao passar o mouse */
+  .fechar-lista:hover {
+      background-color: #f0f0f0;
+      color: #000;
+  }
+
+  /* =========================================================
+   MODAL / DIALOG - LISTA DE PRESENÇA
+   ========================================================= */
+
+/* Estilização Principal do Card Dialog */
+.card-lista-confirmados {
+  border: none;
+  border-radius: 12px;
+  padding: 24px;
+  width: 90%;
+  max-width: 460px;
+  background-color: var(--white, #ffffff);
+  box-shadow: 0 12px 32px rgba(14, 36, 56, 0.2);
+  margin: auto;
+  animation: modalFadeIn 0.25s ease-out;
+  overflow: hidden;
+}
+
+/* Fundo Escurecido (Backdrop) */
+.card-lista-confirmados::backdrop {
+  background-color: rgba(14, 36, 56, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+/* Animação Suave de Entrada */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Cabeçalho do Modal: H1 à Esquerda, Botão à Direita, Alinhados ao Centro */
+.header-lista {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+  border-bottom: 2px solid var(--mist, #eef3f0);
+}
+
+.header-lista h1 {
+  font-family: 'Oswald', sans-serif;
+  color: var(--navy-dark, #0e2438);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  margin: 0;
+  line-height: 1.2;
+  text-align: left;
+}
+
+/* Botão de Fechar (&times;) Alinhado à Direita */
+.fechar-lista {
+  background: transparent;
+  border: none;
+  color: var(--ink-soft, #56677a);
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0; /* Impede o botão de encolher em telas pequenas */
+}
+
+.fechar-lista:hover {
+  color: var(--navy-dark, #0e2438);
+  background-color: var(--mist, #eef3f0);
+}
+
+.fechar-lista:active {
+  transform: scale(0.90);
+}
+
+/* Container Rolável da Lista */
+.card-lista {
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* Customização da Barra de Rolagem (Scrollbar) */
+.card-lista::-webkit-scrollbar {
+  width: 6px;
+}
+
+.card-lista::-webkit-scrollbar-track {
+  background: var(--mist, #eef3f0);
+  border-radius: 4px;
+}
+
+.card-lista::-webkit-scrollbar-thumb {
+  background: var(--navy-soft, #2d5680);
+  border-radius: 4px;
+}
+
+/* Estilização dos Itens da Lista (<ul> e <li>) */
+.lista-presenca {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lista-presenca li {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink, #17222c);
+  background-color: var(--mist, #eef3f0);
+  padding: 10px 14px;
+  border-radius: 8px;
+  border-left: 4px solid var(--green, #4f7942);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.lista-presenca li:hover {
+  background-color: #e2ece6;
+  transform: translateX(2px);
+}
+
+/* Indicador Automático para Lista Vazia */
+.lista-presenca:empty::after {
+  content: "Nenhuma presença confirmada ainda.";
+  display: block;
+  text-align: center;
+  color: var(--ink-soft, #56677a);
+  font-size: 13px;
+  font-style: italic;
+  padding: 20px 0;
+}
+
+/* =========================================================
+   RESPONSIVO (MOBILE)
+   ========================================================= */
+@media (max-width: 480px) {
+  .card-lista-confirmados {
+    width: 92%;
+    padding: 20px 16px 16px 16px;
+  }
+
+  .header-lista h1 {
+    font-size: 18px;
+  }
+
+  .fechar-lista {
+    font-size: 24px;
+  }
+
+  .lista-presenca li {
+    font-size: 13px;
+    padding: 9px 12px;
+  }
+}
+    
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 860px){
+  .nav{ display: none; }
+  .container{ padding: 0 20px; }
+  .header-inner{ padding: 12px 20px; }
+  .event-card{ grid-template-columns: 64px 1fr; row-gap: 14px; }
+  .event-card .confirm-input,
+  .event-card .confirm-btn{ grid-column: 1 / -1; width: 100%; justify-content: center; }
+}
+
+@media (max-width: 600px){
+  .brand-text span{ display: none; }
+  .brand-text strong{ font-size: 16px; }
+  .brand-mark{ width: 36px; height: 36px; font-size: 13px; }
+  .btn{ padding: 9px 14px; font-size: 12px; }
+
+  .page-head{ padding: 32px 0 20px; }
+  .page-head p{ font-size: 14px; }
+
+  .calendar-wrap{ padding: 12px; border-radius: 12px; }
+
+  .fc .fc-toolbar.fc-header-toolbar {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 12px 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  
     display: flex;
-    flex-direction: column;
-    gap: 16px;
-    box-shadow: 0 4px 12px rgba(14, 36, 56, 0.03);
-    transition: box-shadow .2s ease, transform .2s ease;
-    }
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .fc .fc-toolbar-chunk:nth-child(1) {
+    display: flex;
+    align-items: center;
+  }
+  
+  .fc .fc-toolbar-chunk:nth-child(2) {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .fc .fc-toolbar-chunk:nth-child(3) {
+    display: flex;
+    align-items: center;
+  }
+  
+  .fc .fc-toolbar-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #f8f8f8;
+  }
+  
+  .fc .fc-prev-button,
+  .fc .fc-next-button {
+    background-color: transparent !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 6px !important;
+    color: #0f172a !important;
+    padding: 5px 10px !important;
+    font-size: 12px !important;
+    box-shadow: none !important;
+  }
+  
+  .fc .fc-prev-button:hover,
+  .fc .fc-next-button:hover {
+    background-color: #f1f5f9 !important;
+  }
+  
+  .fc .fc-today-button {
+    background-color: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 6px !important;
+    color: #0f172a !important;
+    padding: 5px 10px !important;
+    font-size: 12px !important;
+  }
 
-    .agendamento:hover {
-    box-shadow: 0 14px 26px -18px rgba(27, 58, 92, 0.35);
-    transform: translateY(-2px);
-    }
+  /* Estilização Modal Card-criar-agendamento Mobile */
+  #card-criar-agendamento {
+    margin-top: auto;
+    margin-bottom: 0;
+    width: 100vw;
+    max-width: 100vw;
+    border-radius: 16px 16px 0 0;
+    padding: 20px;
+  }
 
-    /* Layout em Grid do Topo (Mantendo o layout solicitado) */
-    .card-topo-agendamento {
+  #card-criar-agendamento h1 {
+    font-size: 1.2rem;
+  }
+
+  #card-criar-agendamento .modal-acoes {
+    flex-direction: column-reverse;
+    gap: 8px;
+  }
+
+  #card-criar-agendamento button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  /* No mobile, os eventos viram pontinhos coloridos */
+  .fc-event{
+    width: 7px;
+    height: 7px;
+    padding: 0;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .fc-event .fc-event-title,
+  .fc-event .fc-event-time{ display: none; }
+  .fc-daygrid-event-harness{ display: flex; justify-content: center; }
+  .fc-daygrid-day-events{ display: flex; flex-wrap: wrap; justify-content: center; gap: 3px; }
+
+  .events-section{ padding-bottom: 56px; }
+  .events-section .section-title{ font-size: 1.15rem; margin-bottom: 16px; }
+
+  /* Card principal de agendamento */
+  .agendamento {
+    padding: 16px;
+  }
+
+  .card-topo-agendamento {
     display: grid;
     grid-template-columns: 1fr auto;
     grid-template-rows: auto auto;
     gap: 8px 16px;
-    }
+  }
 
-    /* 1. Informações do Agendamento (Esquerda / Ocupa 2 linhas) */
-    .ifo-agendamento {
+  .ifo-agendamento {
     grid-column: 1;
     grid-row: 1 / span 2;
     display: flex;
     flex-direction: column;
     gap: 4px;
-    }
+  }
 
-    .ifo-agendamento h1 {
+  .ifo-agendamento h1 {
     font-family: 'Oswald', sans-serif;
     font-size: 1.25rem;
     color: var(--navy-dark);
     font-weight: 700;
     line-height: 1.2;
-    }
+  }
 
-    .ifo-agendamento h2 {
+  .ifo-agendamento h2 {
     font-family: 'Work Sans', sans-serif;
     font-size: 14px;
     color: var(--ink-soft);
     font-weight: 400;
-    }
+  }
 
-    .ifo-agendamento p {
+  .ifo-agendamento p {
     font-family: 'Work Sans', sans-serif;
     font-size: 13px;
     font-weight: 600;
     color: var(--green);
     margin-top: 4px;
-    }
+  }
 
-    /* 2. Botões de Configuração (Direita / Topo) */
-    .config-agendamento {
+  .config-agendamento {
     grid-column: 2;
     grid-row: 1;
     display: flex;
     justify-content: flex-end;
     gap: 8px;
-    }
+  }
 
-    .config-agendamento button {
+  .config-agendamento button {
     background: transparent;
     border: 1px solid var(--line);
     color: var(--ink-soft);
@@ -638,33 +1298,32 @@
     justify-content: center;
     cursor: pointer;
     transition: background .18s ease, color .18s ease, border-color .18s ease;
-    }
+  }
 
-    .config-agendamento button:hover {
+  .config-agendamento button:hover {
     background: var(--navy-soft);
     color: var(--white);
     border-color: var(--navy-soft);
-    }
+  }
 
-    .config-agendamento button.btn-excluir:hover {
+  .config-agendamento button.btn-excluir:hover {
     background: #c93b2b;
     color: var(--white);
     border-color: #c93b2b;
-    }
+  }
 
-    .config-agendamento button .material-icons,
-    .config-agendamento button i {
+  .config-agendamento button .material-icons,
+  .config-agendamento button i {
     font-size: 16px;
-    }
+  }
 
-    /* 3. Data (Abaixo de Configurações à Direita) */
-    .data-agendamento {
+  .data-agendamento {
     grid-column: 2;
     grid-row: 2;
     text-align: right;
-    }
+  }
 
-    .data-agendamento span {
+  .data-agendamento span {
     font-family: 'Oswald', sans-serif;
     font-size: 13px;
     font-weight: 600;
@@ -674,353 +1333,32 @@
     padding: 4px 10px;
     border-radius: 4px;
     display: inline-block;
-    }
+  }
 
-
-    .container-confirmar{
-        display: grid;
-        width: 100%;
-        height: 100%;
-        align-items: center;
-        justify-items: center;
-        gap: 10px;
-    }
-
-    #abrir-lista-confirmados{
-        padding: 2px;
-    }
-
-    .btn-confirmar{
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 11px 22px;
-        font-size: 13px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        border-radius: 6px;
-        border: 2px solid var(--navy);
-        color: var(--navy);
-        background: transparent;
-        cursor: pointer;
-        transition: background .18s ease, color .18s ease;
-    }
-
-
-    .fechar-lista {
-        background: transparent;
-        border: none;
-        font-size: 24px;
-        font-weight: bold;
-        color: #666;
-        cursor: pointer;
-        padding: 4px 8px;
-        line-height: 1;
-        border-radius: 4px;
-        transition: background-color 0.2s, color 0.2s;
-    }
-    
-    /* Efeito ao passar o mouse */
-    .fechar-lista:hover {
-        background-color: #f0f0f0;
-        color: #000;
-    }
-
-    /*Dialog da lista de presença*/
-    .card-lista-confirmados {
-        border: none;
-        border-radius: 12px;
-        padding: 24px;
-        width: 90%;
-        max-width: 440px;
-        background-color: #ffffff;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        margin: auto; 
-        animation: fadeIn 0.2s ease-out;
-      }
-      
-       /*Fundo escurecido atrás do modal*/
-      .card-lista-confirmados::backdrop {
-        background-color: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(3px);
-      }
-
-      .header-lista{
-        display: flex;
-      }
-      
-  
-  /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 860px){
-    .nav{ display: none; }
-    .container{ padding: 0 20px; }
-    .header-inner{ padding: 12px 20px; }
-    .event-card{ grid-template-columns: 64px 1fr; row-gap: 14px; }
-    .event-card .confirm-input,
-    .event-card .confirm-btn{ grid-column: 1 / -1; width: 100%; justify-content: center; }
+  .container-confirmar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    margin-top: 4px;
   }
   
-  @media (max-width: 600px){
-    .brand-text span{ display: none; }
-    .brand-text strong{ font-size: 16px; }
-    .brand-mark{ width: 36px; height: 36px; font-size: 13px; }
-    .btn{ padding: 9px 14px; font-size: 12px; }
-  
-    .page-head{ padding: 32px 0 20px; }
-    .page-head p{ font-size: 14px; }
-  
-    .calendar-wrap{ padding: 10px; border-radius: 12px; }
-  
-    .fc .fc-toolbar{ flex-direction: column; gap: 10px; }
-    .fc .fc-toolbar-title{ font-size: 1.05rem; }
-
-    /*Estilizar modal de card criar agendamentor, caixa de dialogo*/
-    /* Estilização da janela Modal/Dialog */
-    /* Estilo Base: Celular (Mobile First) */
-      
-      /* ===================================================
-         MOBILE (Telas até 600px) - Formato Aba/Bottom-Sheet
-         =================================================== */
-      @media (max-width: 600px) {
-        #card-criar-agendamento {
-          margin-top: auto;
-          margin-bottom: 0;
-          width: 100vw;
-          max-width: 100vw;
-          border-radius: 16px 16px 0 0; /* Arredonda apenas os cantos superiores */
-          padding: 20px;
-        }
-      
-        #card-criar-agendamento h1 {
-          font-size: 1.2rem;
-        }
-      
-        #card-criar-agendamento .modal-acoes {
-          flex-direction: column-reverse; /* Coloca o botão principal acima no celular */
-          gap: 8px;
-        }
-      
-        #card-criar-agendamento button {
-          width: 100%;
-          padding: 12px;
-          font-size: 1rem;
-        }
-      }
-  
-    /* no mobile, os eventos viram pontinhos coloridos em vez de texto cortado */
-    .fc-event{
-      width: 7px;
-      height: 7px;
-      padding: 0;
-      border-radius: 50%;
-      overflow: hidden;
-    }
-
-
-
-    .fc-event .fc-event-title,
-    .fc-event .fc-event-time{ display: none; }
-    .fc-daygrid-event-harness{ display: flex; justify-content: center; }
-    .fc-daygrid-day-events{ display: flex; flex-wrap: wrap; justify-content: center; gap: 3px; }
-  
-    .events-section{ padding-bottom: 56px; }
-    .events-section .section-title{ font-size: 1.15rem; margin-bottom: 16px; }
-
-        /* Card principal de agendamento no estilo Pelafeu */
-        .agendamento {
-        background: var(--white);
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        padding: 20px 24px;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        box-shadow: 0 4px 12px rgba(14, 36, 56, 0.03);
-        transition: box-shadow .2s ease, transform .2s ease;
-        }
-
-        .agendamento:hover {
-        box-shadow: 0 14px 26px -18px rgba(27, 58, 92, 0.35);
-        transform: translateY(-2px);
-        }
-
-        /* Layout em Grid do Topo (Mantendo o layout solicitado) */
-        .card-topo-agendamento {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        grid-template-rows: auto auto;
-        gap: 8px 16px;
-        }
-
-        /* 1. Informações do Agendamento (Esquerda / Ocupa 2 linhas) */
-        .ifo-agendamento {
-        grid-column: 1;
-        grid-row: 1 / span 2;
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-        }
-
-        .ifo-agendamento h1 {
-        font-family: 'Oswald', sans-serif;
-        font-size: 1.25rem;
-        color: var(--navy-dark);
-        font-weight: 700;
-        line-height: 1.2;
-        }
-
-        .ifo-agendamento h2 {
-        font-family: 'Work Sans', sans-serif;
-        font-size: 14px;
-        color: var(--ink-soft);
-        font-weight: 400;
-        }
-
-        .ifo-agendamento p {
-        font-family: 'Work Sans', sans-serif;
-        font-size: 13px;
-        font-weight: 600;
-        color: var(--green);
-        margin-top: 4px;
-        }
-
-        /* 2. Botões de Configuração (Direita / Topo) */
-        .config-agendamento {
-        grid-column: 2;
-        grid-row: 1;
-        display: flex;
-        justify-content: flex-end;
-        gap: 8px;
-        }
-
-        .config-agendamento button {
-        background: transparent;
-        border: 1px solid var(--line);
-        color: var(--ink-soft);
-        border-radius: 6px;
-        width: 34px;
-        height: 34px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: background .18s ease, color .18s ease, border-color .18s ease;
-        }
-
-        .config-agendamento button:hover {
-        background: var(--navy-soft);
-        color: var(--white);
-        border-color: var(--navy-soft);
-        }
-
-        .config-agendamento button.btn-excluir:hover {
-        background: #c93b2b;
-        color: var(--white);
-        border-color: #c93b2b;
-        }
-
-        .config-agendamento button .material-icons,
-        .config-agendamento button i {
-        font-size: 16px;
-        }
-
-        /* 3. Data (Abaixo de Configurações à Direita) */
-        .data-agendamento {
-        grid-column: 2;
-        grid-row: 2;
-        text-align: right;
-        }
-
-        .data-agendamento span {
-        font-family: 'Oswald', sans-serif;
-        font-size: 13px;
-        font-weight: 600;
-        color: var(--navy);
-        letter-spacing: 0.04em;
-        background: var(--mist);
-        padding: 4px 10px;
-        border-radius: 4px;
-        display: inline-block;
-        }
-
-        /* 4. Ações Inferiores (Confirmar / Lista) */
-        .container-confirmar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 12px;
-        padding-top: 14px;
-        border-top: 1px solid var(--line);
-        margin-top: 4px;
-        }
-
-        .confirmados-agendamentos button {
-        background: transparent;
-        border: none;
-        color: var(--ink-soft);
-        font-family: 'Work Sans', sans-serif;
-        font-size: 13px;
-        font-weight: 500;
-        text-decoration: underline;
-        cursor: pointer;
-        padding: 0;
-        }
-
-        .confirmados-agendamentos button:hover {
-        color: var(--navy);
-        }
-
-        .confirmar-presenca button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 9px 20px;
-        font-family: 'Oswald', sans-serif;
-        font-size: 13px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        border: 2px solid var(--green);
-        color: var(--green);
-        background: var(--white);
-        border-radius: 6px;
-        cursor: pointer;
-        transition: background .18s ease, color .18s ease;
-        }
-
-        .confirmar-presenca button:hover {
-        background: var(--green);
-        color: var(--white);
-        }
-
-        /* Responsividade Mobile */
-        @media (max-width: 600px) {
-        .agendamento {
-            padding: 16px;
-        }
-        
-        .container-confirmar {
-            flex-direction: column;
-            align-items: stretch;
-            gap: 10px;
-        }
-        
-        .confirmados-agendamentos button {
-            text-align: center;
-            width: 100%;
-        }
-
-        .confirmar-presenca button {
-            width: 100%;
-        }
-        }
+  .confirmados-agendamentos button {
+    text-align: center;
+    width: 100%;
   }
-  
-  @media (max-width: 380px){
-    .event-meta{ flex-direction: column; gap: 4px; }
+
+  .confirmar-presenca button {
+    width: 100%;
   }
-  
-  @media (prefers-reduced-motion: reduce){
-    *{ transition: none !important; }
-  }
+
+@media (max-width: 380px){
+  .event-meta{ flex-direction: column; gap: 4px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ transition: none !important; }
+}
+
+}

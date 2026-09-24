@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PELAFEU · Lista de Presença</title>
+<link rel="icon" type="image/jpeg" href="imgs/logo.jpeg">
+<title>PELAFEU - Home</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -20,12 +21,13 @@
       }
   </script>
 
-  <header>
+  <header class="main-header">
     <div class="header-inner">
+      
       <div class="brand">
         <div class="brand-mark">
           <a href="index.html" class="logo-link">
-            <img src="/imgs/logo pelo google.jpeg" alt="Logo da Empresa" class="logo-img">
+            <img src="imgs/logo.jpeg" alt="Logo PELAFEU" class="logo-img">
           </a>
         </div>
         <div class="brand-text">
@@ -33,13 +35,23 @@
           <span>Unisul · Presença</span>
         </div>
       </div>
-      <nav class="nav">
-        <a href="#inicio">Início</a>
-        <a href="/cronograma.html">Confirmar</a>
-        <a href="#como-funciona">Como funciona</a>
-        <a href="#contato">Contato</a>
+
+      <!-- Botão Hambúrguer (Visível apenas no Mobile) -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Menu de Navegação -->
+      <nav class="nav" id="navMenu">
+        <a href="#inicio" class="nav-link">Início</a>
+        <a href="/cronograma.html" class="nav-link">Confirmar Presença</a>
+        <a href="#como-funciona" class="nav-link">Como funciona</a>
+        <a href="#contato" class="nav-link">Contato</a>
+        <a href="/cadastro.html" class="btn btn-logout">Logout</a>
       </nav>
-      <a href="#" class="btn btn-outline">Logout</a>
+
     </div>
     <div class="lanes"></div>
   </header>
