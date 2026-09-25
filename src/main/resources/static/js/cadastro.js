@@ -1,7 +1,7 @@
 //contstante endereço do site
 const API_BASE_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
     ? "http://localhost:8080"                   // URL da API local (Spring Boot)
-    : "https://pelafeu.onrender.com"; // URL da API no Render
+    : "https://sistema-de-confirma-o-de-presen-a.onrender.com"; // URL da API no
 
 // Function para alterar entre o cadastro e o login
 function switchTab(tab) {
