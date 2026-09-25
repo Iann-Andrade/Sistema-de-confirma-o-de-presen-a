@@ -1,6 +1,8 @@
 package com.Lista_de_Presenca.Fisioterapia.config;
 
 
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -10,6 +12,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.Lista_de_Presenca.Fisioterapia.repository.UsuarioRepository;
 import com.Lista_de_Presenca.Fisioterapia.service.JwtService;
@@ -29,14 +34,48 @@ public class SecurityConfig {
     }
 
     @Bean
+public CorsConfigurationSource corsConfigurationSource() {
+
+    CorsConfiguration configuration = new CorsConfiguration();
+
+    configuration.setAllowedOrigins(List.of(
+        "https://pelafeu.onrender.com"
+    ));
+
+    configuration.setAllowedMethods(List.of(
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+    ));
+
+    configuration.setAllowedHeaders(List.of(
+        "Authorization",
+        "Content-Type"
+    ));
+
+    configuration.setAllowCredentials(true);
+
+    UrlBasedCorsConfigurationSource source =
+            new UrlBasedCorsConfigurationSource();
+
+    source.registerCorsConfiguration("/**", configuration);
+
+    return source;
+}
+
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtService jwtService) throws Exception {
 
+
         http
+            .cors(cors -> {})
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 // 1. Libera endpoints de autenticação
-                .requestMatchers("/usuarios/cadastrar", "/usuarios/login", "/favicon.ico").permitAll()
+                .requestMatchers(HttpMethod.OPTIONS, "/**","/usuarios/cadastrar", "/usuarios/login", "/favicon.ico").permitAll()
                 
                 // 2. Libera os arquivos visuais e recursos estáticos (HTML, CSS, JS)
                 .requestMatchers("/", "/index.html", "/cronograma.html", "/cadastro.html", "/login.html", "/imgs/**").permitAll()
