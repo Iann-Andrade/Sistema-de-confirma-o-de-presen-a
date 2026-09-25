@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
 //contstante endereço do site
 const API_BASE_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
     ? "http://localhost:8080"                   // URL da API local (Spring Boot)
-    : "https://seu-app-fisioterapia.onrender.com"; // URL da API no Render
+    : "https://pelafeu.onrender.com"; // URL da API no Render
 
 //Salva o valor da data
 let dataSelecionada = null;
