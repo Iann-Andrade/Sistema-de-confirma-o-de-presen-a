@@ -15,6 +15,7 @@ import com.Lista_de_Presenca.Fisioterapia.dto.LoginResponse;
 
 @RestController
 @RequestMapping("/usuarios")
+@CrossOrigin(origins = "*")
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
