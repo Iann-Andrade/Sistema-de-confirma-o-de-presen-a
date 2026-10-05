@@ -9,6 +9,7 @@ import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.Lista_de_Presenca.Fisioterapia.controller.AgendamentoController;
 import com.Lista_de_Presenca.Fisioterapia.model.Agendamento;
+import com.Lista_de_Presenca.Fisioterapia.model.Usuario;
 import com.Lista_de_Presenca.Fisioterapia.repository.AgendamentoRepository;
 import com.Lista_de_Presenca.Fisioterapia.repository.PresencaRepository;
 
@@ -115,4 +117,15 @@ public class AgendamentoService {
 
             return agendamentos;
         }
+
+        public Agendamento listarPorDataOrdenada(LocalDate data){
+
+            Optional<Agendamento> proximo = agendamentoRepository
+            .findFirstByDataGreaterThanEqualOrderByDataAscHoraInicioAsc(data);
+
+            Agendamento agendamento = proximo.get();
+
+            return agendamento;
+        }
 }
+

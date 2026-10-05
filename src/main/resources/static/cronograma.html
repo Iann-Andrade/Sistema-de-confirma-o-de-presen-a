@@ -8,7 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <link rel="icon" type="image/jpeg" href="imgs/image_d25e7414.jpg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <title>Cronograma</title>
 <link rel="stylesheet" href="/css/cronograma.css">
 <script src="/js/cronograma.js"></script>
@@ -61,12 +63,53 @@
 
 <section class="page-head">
     <div class="container">
-        <span class="eyebrow">Cronograma · Setembro 2026</span>
+        <span class="eyebrow">Cronograma · <span id="data-page"> </span></span>
         <h1>Confirme sua presença nos próximos eventos</h1>
         <p>Navegue pelo calendário, clique em um dia com evento para ver os detalhes e confirme sua participação na lista abaixo.</p>
     </div>
 </section>
 
+<div class="container-proximo-evento">
+
+  <div id="proximo-evento-card">
+
+    <div id="icon-calendar">
+      <i class="fa-solid fa-calendar-days" id="icon-pe"></i>
+    </div>
+
+    <div id="proximo-evento-conteudo">
+
+      <h2>Próximo evento</h2>
+
+      <p><span id="pe-date"></span></p>
+
+      <p><span id="pe-title"></span><i class="bi bi-clock"></i><span id="pe-hora"></span></p>
+      <span></span>
+
+    </div>
+
+    <div id="proximo-evento-acoes">
+
+
+      <div id="img-pe">
+
+        <img src="imgs/logo.jpeg" alt="logo-ilustrativa" id="logoo-img">
+
+      </div>
+      
+  
+      <button id="redirect-confirm" onclick="redirectConfirm()">
+
+        <span class="texto-btn">Confirmar presença</span>
+        <i class="bi bi-chevron-right seta"></i>
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
 
 <div class="container">
     

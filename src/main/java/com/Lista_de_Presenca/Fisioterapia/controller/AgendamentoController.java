@@ -75,4 +75,19 @@ public class AgendamentoController {
             return ResponseEntity.ok(agendamentos);
         }
 
+
+        @GetMapping("/buscar")
+        public  ResponseEntity<?> buscarListaAgendamentos(@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate data, @AuthenticationPrincipal Usuario usuarioLogado, Integer agendamentoId){
+
+            
+            Agendamento agendamento = agendamentoService.listarPorDataOrdenada(data);
+
+            if(agendamento == null){
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body("Nenhum evento futuro");
+            }
+           
+
+            return ResponseEntity.ok(agendamento);
+        }
 }

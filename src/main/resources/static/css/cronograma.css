@@ -284,6 +284,608 @@ a{ color: inherit; text-decoration: none; }
   flex-shrink: 0;
 }
 
+/*Proximo evento*/
+.container-proximo-evento {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto 24px;
+  padding: 0 32px;
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+#proximo-evento-card {
+  display: flex;
+  align-items: stretch;
+
+  width: 100%;
+  min-height: 150px;
+
+  background-color: #ffffff;
+
+  border-radius: 16px;
+
+  padding: 10px;
+
+  box-sizing: border-box;
+
+  gap: 14px;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   ÍCONE DO CALENDÁRIO
+========================================= */
+
+#icon-calendar {
+  flex: 0 0 125px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 14px;
+
+  background: linear-gradient(
+    to bottom,
+    #4f79429c,
+    #d7facd3a
+  );
+
+  overflow: hidden;
+}
+
+
+/* Ícone */
+
+#icon-calendar i {
+  font-size: 64px;
+
+  line-height: 1;
+
+  color: #0e2438;
+}
+
+
+/* =========================================
+   CONTEÚDO
+========================================= */
+
+#proximo-evento-conteudo {
+  flex: 1;
+
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 10px 10px;
+}
+
+
+/* "PRÓXIMO EVENTO" */
+
+#proximo-evento-conteudo h2 {
+  margin: 0 0 8px;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+
+  color: #4f7942;
+}
+
+
+/* =========================================
+   DATA
+========================================= */
+
+#pe-date {
+  display: block;
+
+  margin: 0 0 12px;
+
+  font-size: 22px;
+
+  font-weight: 700;
+
+  line-height: 1.2;
+
+  color: #0e2438;
+}
+
+
+/* =========================================
+   TÍTULO DO EVENTO
+========================================= */
+
+#pe-title {
+  display: inline-block;
+
+  margin: 0;
+
+  padding-right: 14px;
+
+  border-right: 1px solid #c9d1cc;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  color: #263d51;
+}
+
+
+/* =========================================
+   HORÁRIO
+========================================= */
+
+#pe-hora {
+  font-size: 16px;
+
+  color: #263d51;
+}
+
+
+/* Ícone do relógio */
+
+.bi-clock {
+  margin: 0 6px 0 12px;
+
+  padding: 0;
+
+  font-size: 1rem;
+
+  color: #4f7942;
+
+  vertical-align: middle;
+
+  -webkit-text-stroke: 0.5px #4f7942;
+}
+
+
+/* =========================================
+   ÁREA DAS AÇÕES
+========================================= */
+
+#proximo-evento-acoes {
+  flex: 0 0 230px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  padding: 10px 12px;
+
+  border-left: 1px solid #d8e0db;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   ÁREA DA LOGO
+========================================= */
+
+#img-pe {
+  width: 100%;
+
+  height: 55px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+
+/* Logo */
+
+#logoo-img {
+  display: block;
+
+  width: auto;
+
+  height: 55px;
+
+  max-width: 150px;
+
+  object-fit: contain;
+}
+
+
+/* =========================================
+   BOTÃO CONFIRMAR
+========================================= */
+
+#redirect-confirm {
+  width: 100%;
+
+  min-height: 46px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 8px;
+
+  padding: 10px 16px;
+
+  border: none;
+
+  border-radius: 11px;
+
+  background: linear-gradient(
+    to right,
+    #4f79429c,
+    #d7facd3a
+  );
+
+  color: #0e2438;
+
+  font-size: 0.95rem;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+/* Texto */
+
+#redirect-confirm .texto-btn {
+  white-space: nowrap;
+}
+
+
+/* Seta */
+
+#redirect-confirm .seta {
+  flex-shrink: 0;
+
+  font-size: 1.25rem;
+
+  color: #0e2438;
+
+  transition: transform 0.2s ease;
+}
+
+
+/* Hover */
+
+#redirect-confirm:hover {
+  background: linear-gradient(
+    to right,
+    #4f7942b8,
+    #d7facd70
+  );
+}
+
+#redirect-confirm:hover .seta {
+  transform: translateX(4px);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .container-proximo-evento {
+    padding: 0 20px;
+  }
+
+  #proximo-evento-card {
+    gap: 10px;
+  }
+
+  #icon-calendar {
+    flex: 0 0 95px;
+  }
+
+  #icon-calendar i {
+    font-size: 50px;
+  }
+
+  #pe-date {
+    font-size: 19px;
+  }
+
+  #pe-title,
+  #pe-hora {
+    font-size: 14px;
+  }
+
+  #proximo-evento-acoes {
+    flex: 0 0 190px;
+  }
+
+  #logoo-img {
+    max-width: 120px;
+    height: 48px;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+  .container-proximo-evento {
+    padding: 0 12px;
+  }
+
+  #proximo-evento-card {
+    min-height: 120px;
+
+    padding: 8px;
+
+    gap: 10px;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+  }
+
+
+  /* =========================
+     ÍCONE
+  ========================= */
+
+  #icon-calendar {
+    flex: 0 0 65px;
+
+    border-radius: 12px;
+  }
+
+  #icon-calendar i {
+    font-size: 34px;
+  }
+
+
+  /* =========================
+     CONTEÚDO
+  ========================= */
+
+  #proximo-evento-conteudo {
+    padding: 6px 4px;
+  }
+
+  #proximo-evento-conteudo h2 {
+    margin-bottom: 5px;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+  }
+
+  #pe-date {
+    margin-bottom: 7px;
+
+    font-size: 16px;
+
+    line-height: 1.2;
+  }
+
+  #pe-title {
+    padding-right: 8px;
+
+    font-size: 12px;
+  }
+
+  #pe-hora {
+    font-size: 12px;
+  }
+
+  .bi-clock {
+    margin-left: 7px;
+    margin-right: 3px;
+
+    font-size: 0.8rem;
+  }
+
+
+  /* =========================
+     ÁREA DO BOTÃO
+  ========================= */
+
+  #proximo-evento-acoes {
+
+    /* ocupa toda a altura disponível */
+    align-self: stretch;
+
+    flex: 0 0 46px;
+
+    margin: 0;
+
+    padding: 0;
+
+    display: flex;
+
+    align-items: stretch;
+
+    justify-content: stretch;
+
+    border-left: none;
+
+    overflow: hidden;
+  }
+
+
+  /* =========================
+     ESCONDE LOGO
+  ========================= */
+
+  #img-pe {
+    display: none;
+  }
+
+
+  /* =========================
+     BOTÃO LATERAL
+  ========================= */
+
+  #redirect-confirm {
+
+    width: 100%;
+    height: 100%;
+
+    min-width: 46px;
+    min-height: 0;
+
+    margin: 0;
+
+    padding: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: linear-gradient(
+      to bottom,
+      #4f7942,
+      #385d31
+    );
+
+    color: #ffffff;
+
+    box-sizing: border-box;
+  }
+
+
+  /* Esconde texto */
+
+  #redirect-confirm .texto-btn {
+    display: none;
+  }
+
+
+  /* Seta */
+
+  #redirect-confirm .seta {
+
+    font-size: 1.2rem;
+
+    color: #ffffff;
+
+    -webkit-text-stroke: 0.5px #ffffff;
+
+    transition: transform 0.2s ease;
+  }
+
+
+  /* Animação */
+
+  #redirect-confirm:hover .seta {
+    transform: translateX(3px);
+  }
+
+
+/* =========================================
+   CELULARES PEQUENOS
+========================================= */
+@media (max-width: 430px) {
+
+  .container-proximo-evento {
+    padding: 0 8px;
+  }
+
+  #proximo-evento-card {
+    min-height: 105px;
+
+    padding: 6px;
+
+    gap: 8px;
+  }
+
+
+  #icon-calendar {
+    flex: 0 0 52px;
+  }
+
+  #icon-calendar i {
+    font-size: 27px;
+  }
+
+
+  #proximo-evento-conteudo {
+    padding: 4px 2px;
+  }
+
+  #proximo-evento-conteudo h2 {
+    font-size: 9px;
+    margin-bottom: 4px;
+  }
+
+  #pe-date {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  #pe-title,
+  #pe-hora {
+    font-size: 11px;
+  }
+
+
+  /* Botão lateral */
+
+  #proximo-evento-acoes {
+    flex: 0 0 40px;
+  }
+
+
+  #redirect-confirm {
+    min-width: 40px;
+
+    border-radius: 8px;
+  }
+
+  #redirect-confirm .seta {
+    font-size: 1rem;
+  }
+}
+}
 /* ---------- CALENDÁRIO (FullCalendar - Toolbar Integrada) ---------- */
 .calendar-wrap{
   background: var(--white);

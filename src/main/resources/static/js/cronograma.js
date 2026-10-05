@@ -6,6 +6,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (!token) {
         window.location.href = '/cadastro.html';
     }
+
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -33,6 +34,15 @@ const API_BASE_URL = window.location.hostname === "localhost" || window.location
 
 //Salva o valor da data
 let dataSelecionada = null;
+let calendar = null;
+
+//Criar campo do aviso de próximo agendamento
+document.addEventListener('DOMContentLoaded', () =>{
+
+    const hoje = new Date().toISOString().split('T')[0];
+
+    buscarProximoEvento(hoje);
+})
 
  // ---------- INICIALIZA O FULLCALENDAR ----------
  document.addEventListener('DOMContentLoaded', function() {
@@ -61,12 +71,135 @@ let dataSelecionada = null;
         dateClick: function(info) {
             dataSelecionada = info.dateStr;  
             console.log('Data clicada:', dataSelecionada);
+
+            manipularCalendario();
             buscarAgendamentos(dataSelecionada)
+
+        }, 
+
+        datesSet: function(info){
+
+            manipularCalendario(info.view.calendar.getDate());
         }
+
       });
       
       calendar.render();
   });
+
+  function manipularCalendario(dataAtual){
+
+    if (!dataAtual) {
+        if (!calendar) {
+            console.error("O calendário ainda não foi carregado!");
+            return;
+        }
+        dataAtual = calendar.getDate();
+    }
+
+    const dataPage = document.getElementById("data-page");
+
+    let mesTexto = dataAtual.toLocaleDateString('pt-BR', { month: 'long' });
+    mesTexto = mesTexto.charAt(0).toUpperCase() + mesTexto.slice(1);
+
+    let ano = dataAtual.getFullYear();
+    console.log(`Data atual no calendário: /${mesTexto}/${ano}`);
+
+    dataPage.innerHTML = `<p>${mesTexto} ${ano}</p>`;
+
+  };
+
+
+  async function buscarProximoEvento(hoje){
+    const token = localStorage.getItem('token');
+    const h1 = document.getElementById("pe-date");
+    const acoes = document.getElementById("proximo-evento-acoes")
+    const iconRelogio = document.querySelector(".bi-clock");
+    
+    try{
+        
+        const response = await fetch(`${API_BASE_URL}/agendamento/buscar?data=${hoje}`, {
+            method: "GET",
+            headers: { 
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        if(!response.ok){
+            h1.innerText = "Nenhum evento futuro foi encontrado.";
+            acoes.style.display = "none";
+            h1.style.marginTop = "23px";
+            iconRelogio.style.display = "none";
+
+            return;
+        };
+
+        const futurosEventos = await response.json();
+        console.log("Retorno das datas dos próximos eventos", futurosEventos);
+
+        renderizarProximoEvento(futurosEventos);
+
+    }catch(error){
+        const container = document.getElementById("container-proximo-evento");
+        container.style.display = "none";
+        console.error("Caiu no catch:", error);
+    }
+
+
+  }
+
+  async function renderizarProximoEvento(futurosEventos){
+
+    const container = document.getElementById("container-proximo-evento");
+    const card = document.getElementById("proximo-evento-card");
+    const cardConteudo = document.getElementById("proximo-evento-conteudo");
+    const h1 = document.getElementById("pe-date");
+    const title = document.getElementById("pe-title");
+    const hora = document.getElementById("pe-hora");
+    const btnConfirmar = document.getElementById("redirect-confirm");
+    
+    let [anoF, mesF, diaF] = futurosEventos.data.split("-");
+
+    dataFull = new Date(anoF, mesF - 1, diaF);
+
+    let titleEvent = futurosEventos.nome;
+    let horaEventInicio = futurosEventos.horaInicio.slice(0,5);
+    let horaEventFim = futurosEventos.horaFim.slice(0,5);
+
+
+    console.log(dataFull, titleEvent);
+
+    let mes = dataFull.toLocaleDateString('pt-BR', { month: 'long'});
+    let dia = dataFull.toLocaleDateString('pt-BR', { day: '2-digit'});
+    let diaSemana = dataFull.toLocaleDateString('pt-BR', { weekday: 'short'});
+    let ano = dataFull.getFullYear();
+
+    diaSemana = diaSemana.charAt(0).toUpperCase() + diaSemana.slice(1);
+
+    console.log(mes, dia, ano);
+
+    h1.innerText = `${diaSemana} ${dia} ${mes}`;
+
+    title.innerText = `${titleEvent}`
+
+    hora.innerText = `${horaEventInicio} - ${horaEventFim}`;
+
+    if(btnConfirmar){
+        btnConfirmar.onclick = () => {
+            dataSelecionada = futurosEventos.data;
+            console.log("Teste functions dentro de outr,", dataSelecionada);
+
+            const listaEventos = document.getElementById("eventList");
+        
+            buscarAgendamentos(dataSelecionada);
+
+            listaEventos.scrollIntoView({ behavior: "smooth", block: "center"});
+        }
+    }
+
+  }
+
 
 //Function de buscar os agendamentos do dia
 /*function buscarAgendamentos(dataSelecionada){
