@@ -431,6 +431,71 @@ function renderizarHoraiosAgendamentos(agendamentos){
     
 };
 
+document.addEventListener("DOMContentLoaded", async () => {
+    console.log("Página carregada, buscando agendamentos...");
+    await buscarTodosAgendamentos();
+});
+
+//Buscar todos os agendamentos para ilustrar no calendário
+ async function buscarTodosAgendamentos() {
+    const token = localStorage.getItem("token");
+
+    try{
+        const response = await fetch(`${API_BASE_URL}/agendamento/buscartodos`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        })
+
+        if(!response.ok){
+            if(response.status === 403){
+                console.log("Sua seção expirou, faça login novamente");
+            };
+        }
+
+        const lista = await response.json();
+        console.log("Retorno de todos os agendamentos", lista);
+
+        renderizarMarcadoresFullCalendar(lista);
+
+    }catch(erro){
+        
+    }
+
+}
+
+//Renderizar no full calendar, eventos.
+function renderizarMarcadoresFullCalendar(lista){
+    
+    lista.forEach(item => {
+        let dataAgendamento = item.data;
+        let horaAgendamento = item.horaInicio.slice(0,5);
+        let idAgendamento = item.id;
+        let titleAgendamento = item.nome;
+        
+        const listaDoDia = document.createElement("ol");
+        listaDoDia.className = "lista-agendamentos-ol"
+
+        //Seleciona o dia do calendário de acordo com a data do agendamento
+        const diaEl = document.querySelector(`.fc-daygrid-day[data-date="${dataAgendamento}"]`);
+
+        //Seleciona o container dentro do dia do full calendario
+        const containerInterno = diaEl.querySelector('.fc-daygrid-day-events');
+
+                    const eventoDoDia = document.createElement("li");
+                    eventoDoDia.className = "agendamento-do-dia";
+                    
+                    eventoDoDia.innerText = `${horaAgendamento} ${titleAgendamento}`;
+                    
+                    listaDoDia.appendChild(eventoDoDia);
+                    containerInterno.appendChild(listaDoDia);
+    });
+};
+        
+
+
 //Confirmar presença de alunos em eventos 
 document.addEventListener("click", async function(event) {
 

@@ -127,5 +127,10 @@ public class AgendamentoService {
 
             return agendamento;
         }
+
+        public List<Agendamento> listaAgendamentos(){
+
+            return  agendamentoRepository.findAllByOrderByDataAscHoraInicioAsc();
+        }
 }
 

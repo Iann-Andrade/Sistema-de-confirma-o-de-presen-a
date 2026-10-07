@@ -90,4 +90,14 @@ public class AgendamentoController {
 
             return ResponseEntity.ok(agendamento);
         }
-}
+        
+        @GetMapping ("/buscartodos")
+        public List<Agendamento> buscarTodosAgendamentos(@RequestParam(required = false) @AuthenticationPrincipal Usuario usuarioLogado, Integer agendamentoId){
+
+            List<Agendamento> agendamentos = agendamentoService.listaAgendamentos();
+
+            return agendamentos;
+        } 
+
+
+    }        
