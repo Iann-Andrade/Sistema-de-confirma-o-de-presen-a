@@ -20,7 +20,7 @@ public interface AgendamentoRepository extends JpaRepository<Agendamento, Intege
 
     Optional<Agendamento> findFirstByDataGreaterThanEqualOrderByDataAscHoraInicioAsc(LocalDate data);
 
-    List<Agendamento> findAllByOrderByDataAscHoraInicioAsc();
+    List<Agendamento> findAllByOrderByDataAscHoraInicioAsc(LocalDate data);
 
     List<Agendamento> findByDataGreaterThan(LocalDate data);
 

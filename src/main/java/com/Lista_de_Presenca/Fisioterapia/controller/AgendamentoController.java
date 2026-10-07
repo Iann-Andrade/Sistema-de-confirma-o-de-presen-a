@@ -91,10 +91,10 @@ public class AgendamentoController {
             return ResponseEntity.ok(agendamento);
         }
         
-        @GetMapping ("/buscartodos")
-        public List<Agendamento> buscarTodosAgendamentos(@RequestParam(required = false) @AuthenticationPrincipal Usuario usuarioLogado, Integer agendamentoId){
+        @GetMapping ("/buscar-por-mes")
+        public List<Agendamento> buscarTodosAgendamentos(@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate data, @AuthenticationPrincipal Usuario usuarioLogado, Integer agendamentoId){
 
-            List<Agendamento> agendamentos = agendamentoService.listaAgendamentos();
+            List<Agendamento> agendamentos = agendamentoService.listaAgendamentos(data);
 
             return agendamentos;
         } 

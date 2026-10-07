@@ -35,6 +35,7 @@ const API_BASE_URL = window.location.hostname === "localhost" || window.location
 //Salva o valor da data
 let dataSelecionada = null;
 let calendar = null;
+let anoMesAtual = "";
 
 //Criar campo do aviso de próximo agendamento
 document.addEventListener('DOMContentLoaded', () =>{
@@ -78,6 +79,18 @@ document.addEventListener('DOMContentLoaded', () =>{
         }, 
 
         datesSet: function(info){
+
+            const dataVisivel = info.view.currentStart;
+        
+            const ano = dataVisivel.getFullYear();
+            const mes = String(dataVisivel.getMonth() + 1).padStart(2, '0');
+            
+            // Guarda o valor na variável "2026-10"
+            anoMesAtual = `${ano}-${mes}`;
+            
+            console.log("Mês/Ano atualizado no calendário:", anoMesAtual);
+
+            buscarTodosAgendamentos(anoMesAtual);
 
             manipularCalendario(info.view.calendar.getDate());
         }
@@ -431,44 +444,52 @@ function renderizarHoraiosAgendamentos(agendamentos){
     
 };
 
-document.addEventListener("DOMContentLoaded", async () => {
-    console.log("Página carregada, buscando agendamentos...");
-    await buscarTodosAgendamentos();
-});
-
 //Buscar todos os agendamentos para ilustrar no calendário
  async function buscarTodosAgendamentos() {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token"); 
+    console.log("dataaaaa", dataSelecionada);
+    const dataFul = manipularCalendario();
+    console.log("data atuaaal", dataFul);
 
-    try{
-        const response = await fetch(`${API_BASE_URL}/agendamento/buscartodos`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
+    if(anoMesAtual){
+
+        try{
+            const response = await fetch(`${API_BASE_URL}/agendamento/buscar-por-mes?date=${anoMesAtual}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                }
+            })
+    
+            if(!response.ok){
+                if(response.status === 403){
+                    console.log("Sua seção expirou, faça login novamente");
+                };
             }
-        })
-
-        if(!response.ok){
-            if(response.status === 403){
-                console.log("Sua seção expirou, faça login novamente");
-            };
+    
+            const lista = await response.json();
+            console.log("Retorno de todos os agendamentos", lista);
+    
+            renderizarMarcadoresFullCalendar(lista);
+    
+        }catch(erro){
+            
         }
-
-        const lista = await response.json();
-        console.log("Retorno de todos os agendamentos", lista);
-
-        renderizarMarcadoresFullCalendar(lista);
-
-    }catch(erro){
-        
     }
+
 
 }
 
 //Renderizar no full calendar, eventos.
 function renderizarMarcadoresFullCalendar(lista){
     
+    if(!Array.isArray(lista)){
+        console.log("erro ao carregar a lista", lista);
+        return;
+    }
+
+
     lista.forEach(item => {
         let dataAgendamento = item.data;
         let horaAgendamento = item.horaInicio.slice(0,5);
@@ -480,6 +501,10 @@ function renderizarMarcadoresFullCalendar(lista){
 
         //Seleciona o dia do calendário de acordo com a data do agendamento
         const diaEl = document.querySelector(`.fc-daygrid-day[data-date="${dataAgendamento}"]`);
+
+        if(!diaEl){
+            return;
+        }
 
         //Seleciona o container dentro do dia do full calendario
         const containerInterno = diaEl.querySelector('.fc-daygrid-day-events');

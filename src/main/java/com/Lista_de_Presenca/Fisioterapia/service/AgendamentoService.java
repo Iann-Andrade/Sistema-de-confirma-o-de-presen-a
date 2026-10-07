@@ -128,9 +128,9 @@ public class AgendamentoService {
             return agendamento;
         }
 
-        public List<Agendamento> listaAgendamentos(){
+        public List<Agendamento> listaAgendamentos(LocalDate data){
 
-            return  agendamentoRepository.findAllByOrderByDataAscHoraInicioAsc();
+            return  agendamentoRepository.findAllByOrderByDataAscHoraInicioAsc(data);
         }
 }
 
