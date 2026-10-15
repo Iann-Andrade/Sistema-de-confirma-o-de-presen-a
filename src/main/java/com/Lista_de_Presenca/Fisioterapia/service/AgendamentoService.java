@@ -12,6 +12,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.List;
 
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -57,6 +59,31 @@ public class AgendamentoService {
 
             agendamentoRepository.save(agendamento);
         }
+
+        //Verifica se o gerar agendamento automatio foi realizado ou não
+        @EventListener(ApplicationReadyEvent.class)
+        public void verificarGeracaoAutomatica(){
+
+            LocalDate hoje = LocalDate.now();
+
+            LocalDate proximaTerca = hoje.with(
+                TemporalAdjusters.next(DayOfWeek.TUESDAY)
+            );
+
+            List<Agendamento> agendamentosDoDia = agendamentoRepository.findByData(proximaTerca);
+            
+            Optional<Agendamento> agendamentoTerca = agendamentosDoDia.stream()
+            .filter(a -> a.getHoraInicio().equals(LocalTime.of(19, 0)))
+            .findFirst();
+
+            if(!agendamentoTerca.isPresent()){
+                System.out.println("Agendamento automático não encontrado, criar um novo");
+                GerarAgendamentoAutomatico();
+            }
+            System.out.println("Agendamento automático foi encontrado.");
+
+        }
+
     
         //Criar novo agendamento manualmente
         public Agendamento criarAgendamento(Agendamento agendamento){
