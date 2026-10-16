@@ -1,0 +1,17 @@
+{
+    "name": "Java Spring Boot Workspace",
+    "image": "mcr.microsoft.com/devcontainers/java:1-17-bullseye",
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          "vscjava.vscode-java-pack",
+          "vmware.vscode-spring-boot",
+          "Pivotal.vscode-boot-dev-pack"
+        ]
+      }
+    },
+    "features": {
+      "ghcr.io/devcontainers/features/postgres:1": {}
+    },
+    "forwardPorts": [8080, 5432]
+  }
