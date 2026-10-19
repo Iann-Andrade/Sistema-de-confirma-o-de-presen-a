@@ -16,8 +16,7 @@ public class JwtService {
     @Value("${jwt.secret}")
     private String secret;
 
-    @Value("${jwt.expiration}")
-    private long expiration;
+    // Removi o @Value("${jwt.expiration}") daqui, pois não é mais necessário!
 
     public SecretKey getKey() {
         return Keys.hmacShaKeyFor(
@@ -30,8 +29,7 @@ public class JwtService {
         return Jwts.builder()
                 .subject(usuarioId.toString())
                 .claim("role", role)
-                .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + expiration))
+                .issuedAt(new Date()) 
                 .signWith(getKey())
                 .compact();
     }
